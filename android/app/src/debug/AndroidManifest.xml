@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DEBUG overlay: the emulator gates dial the host's dev harness over plain ws:// / http://
+     (10.0.2.2 = the host from the emulator). Release keeps the platform default — cleartext
+     blocked, wss/https only — the way the iOS ATS config allows local networking only. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:networkSecurityConfig="@xml/network_security_config">
+        <!-- docs/FIRST-RUN.md §3: the access-key deep link pyrochat://redeem/<CODE> — MainActivity.onCreate /
+             onNewIntent. Debug only, like BuildConfig.ACCESS_KEY_UI. -->
+        <activity android:name="com.pyrochat.app.MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="pyrochat" android:host="redeem" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

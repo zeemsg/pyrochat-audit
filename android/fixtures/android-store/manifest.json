@@ -1,0 +1,181 @@
+{
+    "attachmentIds": {
+        "fileIncoming": "a1a1a1a1-0000-4000-8000-000000000004",
+        "fileOutgoing": "a1a1a1a1-0000-4000-8000-000000000003",
+        "imageIncoming": "a1a1a1a1-0000-4000-8000-000000000002",
+        "imageOutgoing": "a1a1a1a1-0000-4000-8000-000000000001"
+    },
+    "backup": {
+        "exportedAt": 8.11708127157793E8,
+        "file": "backup.pyrobak",
+        "iterations": 600000,
+        "kdf": "PBKDF2-HMAC-SHA256",
+        "keyBytes": 32,
+        "layout": "magic(8) || salt(32) || nonce(12) || ciphertext || tag(16)",
+        "magic": "PYROBAK1",
+        "passphrase": "backup-pass-1234",
+        "payload": "JSON {blob: <same Blob as the store>, attachments: {id: base64 plaintext}, exportedAt: Date}",
+        "saltHex": "523b95355681188bac80126408a3d922c9f98b6de84ef1471054d973852a982e"
+    },
+    "counts": {
+        "accessTokens": 2,
+        "attachments": 4,
+        "blockedHashes": 1,
+        "contacts": 4,
+        "contactsVerified": 1,
+        "drafts": 2,
+        "emptyThreads": 1,
+        "knownIdentities": 1,
+        "kyberPreKeys": 1,
+        "messages": 27,
+        "messagesByDirection": {
+            "incoming": 16,
+            "outgoing": 11
+        },
+        "messagesByKind": {
+            "file": 2,
+            "image": 2,
+            "system": 7,
+            "text": 14,
+            "voice": 2
+        },
+        "messagesByStatus": {
+            "delivered": 18,
+            "failed": 1,
+            "pending": 1,
+            "read": 5,
+            "sent": 2
+        },
+        "messagesViaWeb": 2,
+        "messagesWithAttachment": 4,
+        "messagesWithBurnAfter": 5,
+        "messagesWithBurnStartedAt": 3,
+        "messagesWithVoiceData": 2,
+        "nextPreKeyId": 33,
+        "notes": 3,
+        "notesPinned": 1,
+        "preKeys": 32,
+        "receiptOutbox": {
+            "burnStart": 1,
+            "delivered": 1,
+            "read": 2
+        },
+        "sessions": 1,
+        "signedPreKeys": 1,
+        "threads": 5
+    },
+    "files": {
+        "attachments/1ee97a0c-79dc-49b7-8b6c-eb86d4a5ed80": {
+            "plaintextBytes": 2048,
+            "plaintextSha256": "7224b0eb46cd3f9bc8287291b58bbd384bb913cda61af639bf726f83844f9ee4",
+            "sealedBytes": 2076,
+            "sealedSha256": "4057c162f0e8538a7b6130c15b61b4206205a499d358f61093cc231747976c04"
+        },
+        "attachments/77c2c81a-5e3e-41b0-8e4a-109391b3adeb": {
+            "plaintextBytes": 1536,
+            "plaintextSha256": "0df86bfb826b79585c2a9b0e25c9736e97d6ed76388577ddf6205f3e6654f7b3",
+            "sealedBytes": 1564,
+            "sealedSha256": "68214e79de75b845d3c554a91160d3b16a72277a3624db748018e85cdd593ff3"
+        },
+        "attachments/a1a1a1a1-0000-4000-8000-000000000001": {
+            "plaintextBytes": 4096,
+            "plaintextSha256": "efb9681e5799f02b32768e17f90a7e701fcf98be6d9a5bcc6ff9e61d20e228b4",
+            "sealedBytes": 4124,
+            "sealedSha256": "6d372125e05861f88872723bf28eceea58f007fedfecac523ee5bdffffa74d2f"
+        },
+        "attachments/a1a1a1a1-0000-4000-8000-000000000002": {
+            "plaintextBytes": 3000,
+            "plaintextSha256": "4c92e49e6d780d53cd24f51b4901eb5a43d5611dc5ff3e51124de00d38937d43",
+            "sealedBytes": 3028,
+            "sealedSha256": "54d2b84c4c144de71abfcb0c9187ef89e19444522106500aac8fb7dd29734f40"
+        },
+        "attachments/a1a1a1a1-0000-4000-8000-000000000003": {
+            "plaintextBytes": 2500,
+            "plaintextSha256": "0898502c50f565e4fcf00e448ffe64c5ad5e2e75a4c18a7353b75b150a699f5c",
+            "sealedBytes": 2528,
+            "sealedSha256": "166a4165139d77dc32fdad63acc8261337dae2728cdec94512952a8bc49f085c"
+        },
+        "attachments/a1a1a1a1-0000-4000-8000-000000000004": {
+            "plaintextBytes": 700,
+            "plaintextSha256": "1910f54fdce6725f3fb9858fae774ffdc8369a650c5652173e27b775d02ed282",
+            "sealedBytes": 728,
+            "sealedSha256": "1e2817432e41b8bd0217066d55b1e1c76e28ba2e9a4fc6ceecf95573d046c769"
+        },
+        "backup.pyrobak": {
+            "bytes": 43998,
+            "sha256": "f6d29972aaa7547405f442ca50c4ead3504dd32ddf9f5b88599eee65b84b699d"
+        },
+        "pyro.store": {
+            "bytes": 12582925,
+            "sha256": "1fc7d3409a5afffa362d062d3daab5c15ad759197b41a325d6689e1e0e8b738b"
+        },
+        "pyro.store.plaintext.json": {
+            "bytes": 25107,
+            "sha256": "463ef3d38e7a496a3555cbe343696ef9a842d903beb98d5440f5f85317ab9bfd"
+        }
+    },
+    "fixedValues": {
+        "attachmentPlaintext": "LCG pattern: x = x*1664525 + 1013904223 (mod 2^32), byte = x >> 24, x0 = seed | 0x9E370000; seeds 0x11,0x12,0x13,0x14; voiceData seeds 0x21 (1536 B), 0x22 (2048 B)",
+        "dateBase": 780000000,
+        "dateEncoding": "seconds since 2001-01-01T00:00:00Z as a JSON number (Swift Date default)",
+        "messageIdPattern": "6d000000-0000-4000-8000-%012d (n = 1…27)"
+    },
+    "generatedAt": "2026-09-21T18:28:47.551070Z",
+    "generatedBy": "android/core-store/src/test/kotlin/com/pyrochat/store/AndroidFixtureWriterTest.kt (real SecureStore.restore / Backup.export over the decoded ios-store fixture)",
+    "hashes": {
+        "alice_fixture": "1055062b6067d227d29a120f8646eb87bf439c58b29715a26cdc11a2e314b1ef",
+        "bob_fixture": "550618ddfd3fb280f5c4c62d1d903e76166318d1f11ac467fada75f34395c563",
+        "carol_fixture": "f6bdb94c9073f72a4fba85f758b8fd332a2f6b8a8cdd3fdf348aa82ca5886407",
+        "dave_fixture": "342e14bd406c0a3e585d28f1e769f14453c60467197b3ae863bee40196e5eda9",
+        "ghost_fixture": "5531d75b2d43d37474959054218f4a89e24b137d68722e02078777d62bd9ecb1",
+        "stranger_fixture": "c11801ffc17e647ace9ca3f31949c81261b41230ba87e7341971b9039e64cbc6"
+    },
+    "identity": {
+        "authPrivateKeyBytes": 32,
+        "authPublicKeyB64": "gJ2yVcKPyF19RonsxFDYNmo8p/ullmI8B1HHCz8yROg=",
+        "identityKeyPairBytes": 69,
+        "identityPublicKeyB64": "BVSdCuf9ym9huFeJzYvZqKSsWf9Xdk2YyT4inEStWDsK",
+        "registrationId": 7904,
+        "usernameDisplay": "alice_fixture",
+        "usernameHash": "1055062b6067d227d29a120f8646eb87bf439c58b29715a26cdc11a2e314b1ef"
+    },
+    "import": "ios/Tests/FixtureImportTests.swift — copy this directory OUTSIDE ~/Desktop first (macOS TCC blocks the simulator's open() on Desktop/Documents/Downloads under xcodebuild), then TEST_RUNNER_PYRO_IMPORT_DIR=<copy> xcodebuild test … -only-testing:PyroChatTests/FixtureImportTests",
+    "peer": {
+        "identityKeyB64": "BdlXmOzZrm316uAc6BYwdNXSvJ/F5uKqW3ilJcMzRKwM",
+        "identityKeyBytes": 33,
+        "registrationId": 8100,
+        "sessionRecordBytes": 4296,
+        "usernameDisplay": "bob_fixture",
+        "usernameHash": "550618ddfd3fb280f5c4c62d1d903e76166318d1f11ac467fada75f34395c563"
+    },
+    "regenerate": "cd android && source ./env.sh && ./gradlew :core-store:test --tests '*AndroidFixtureWriterTest*'",
+    "sourceFixture": {
+        "dir": "android/fixtures/ios-store",
+        "generatedAt": "2026-09-17T10:26:38Z",
+        "pyro.store.sha256": "b59e2c951289a9e973d457024ed70fb4a052c6a0ef35d4f591ced228ec658aea"
+    },
+    "store": {
+        "aad": "none",
+        "aead": "AES-256-GCM",
+        "file": "pyro.store",
+        "iterations": 600000,
+        "kdf": "PBKDF2-HMAC-SHA256",
+        "kdfSaltHex": "00112233445566778899aabbccddeeff102132435465768798a9bacbdcedfe0f",
+        "keyBytes": 32,
+        "layout": "\"PYROVLT1\"(8) || slotCount(1) || slotBytes(4, big-endian) || 3 * slotBytes; each slot is two halves of 2097152 bytes, each half nonce(12) || ciphertext || tag(16) sealing seq(8, big-endian) || length(4, big-endian) || JSON(Blob) || random padding; the live half is the authenticating one with the highest seq",
+        "halfBytes": 2097152,
+        "occupiedHalf": 0,
+        "seq": 1,
+        "maxJsonBytes": 2097112,
+        "voiceNotes": "docs/DECOY-ACCOUNT.md §1a: voice notes are sidecar attachments like images and files; no row carries voiceData",
+        "magic": "PYROVLT1",
+        "slotCount": 3,
+        "slotBytes": 4194304,
+        "occupiedSlot": 1,
+        "unusedSlots": "CSPRNG bytes, written once when the container was created and never rewritten; the occupied slot's second half is noise until its first save (docs/DECOY-ACCOUNT.md §1)",
+        "nonceBytes": 12,
+        "password": "correct horse battery staple",
+        "plaintext": "pyro.store.plaintext.json — the JSON(Blob) INSIDE the occupied slot (Android SwiftJson encoding: the same JSON tree as the iOS plaintext; flat arrays sorted by id, '/' unescaped, key order differs)",
+        "tagBytes": 16
+    }
+}

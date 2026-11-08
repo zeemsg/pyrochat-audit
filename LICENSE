@@ -1,0 +1,19 @@
+PyroChat apps — licensing
+
+  ios/        GNU AFFERO GENERAL PUBLIC LICENSE v3  — see ios/LICENSE
+  android/    GNU AFFERO GENERAL PUBLIC LICENSE v3  — see android/LICENSE
+  bot/        GNU AFFERO GENERAL PUBLIC LICENSE v3  — see bot/LICENSE
+
+      All three link libsignal (Copyright 2020-2026 Signal Messenger, LLC),
+      which is AGPLv3. A work that links AGPLv3 code and is distributed must
+      itself be AGPLv3, so these directories are.
+
+  android/fixtures/   test vectors, no licence claimed.
+
+Author: Zee (contact@zeemsg.com). Copyright 2025-2026 Zee. PyroChat is a trademark
+of its owner; this licence covers the code, not the name.
+
+PyroChat is not affiliated with or endorsed by Signal Messenger, LLC.
+The relay server, the billing server and the website are separate,
+proprietary programs that communicate with these apps over a network
+protocol; they are not part of this repository.

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Every user-facing word is the iOS one (UI/*.swift), same casing. Strings the
+     service layer produces (error codes, status words) live in Kotlin next to
+     their formatting helpers so they stay JVM-testable. -->
+<resources>
+    <string name="app_name">PyroChat</string>
+    <string name="wordmark">PYROCHAT</string>
+    <string name="nav_back">Back</string>
+    <string name="grep">grep:</string>
+    <string name="grep_no_match">grep: no match.</string>
+    <string name="x_close">[X]</string>
+
+    <!-- BootView -->
+    <string-array name="boot_lines">
+        <item>"PYROCHAT BIOS v0.1.0"</item>
+        <item>"init secure enclave .......... OK"</item>
+        <item>"mount encrypted store ........ OK"</item>
+        <item>"load signal protocol ......... OK"</item>
+        <item>"  x3dh + double ratchet"</item>
+        <item>"  pqxdh kyber1024"</item>
+        <item>"zero plaintext policy ........ ENFORCED"</item>
+        <item>"relay trust level ............ NONE (by design)"</item>
+        <item>""</item>
+        <item>"> welcome to the dark"</item>
+    </string-array>
+
+    <!-- AuthView -->
+    <string name="auth_header_suffix">" // SECURE TERMINAL"</string>
+    <!-- docs/DECOY-ACCOUNT.md §5: the screen asserts nothing. A container exists from first run and
+         no path deletes it, so the app cannot tell whether this device holds an account. The two
+         sentences that used to live here — "an identity lives on this device" and "no identity on
+         this device yet" — are DELETED, not merely unused: a forbidden claim left in the resource
+         table is one @string away from being rendered again. -->
+    <!-- docs/DECOY-ACCOUNT.md §1, "Creating an identity from cold". Shown EVERY TIME, whatever the
+         app knows: a warning that appeared only when something was there would answer the question
+         this whole design exists to leave unanswered. One that always appears carries no
+         information at all — and because a cold create rewrites the WHOLE container, it is not a
+         probability the reader has to weigh but a plain statement of what will happen. -->
+    <string name="dlg_create_slot">ERASES THIS DEVICE</string>
+    <string name="dlg_create_slot_msg">creating an identity here erases anything else stored on this device.\n\nif you already have an identity on this device, sign in first — from inside an account nothing is risked.</string>
+    <string name="btn_create_anyway">CREATE</string>
+    <string name="auth_choose_neutral">this device may or may not hold an identity — only a password can say.</string>
+    <string name="auth_btn_sign_in">[ SIGN IN ]</string>
+    <string name="auth_btn_create_identity">[ CREATE IDENTITY ]</string>
+    <string name="auth_btn_restore_backup">[ RESTORE BACKUP ]</string>
+    <string name="auth_choose_footnote">identities exist only on the device that created them — unless you carry an encrypted backup (made in [cfg]) to the new device. no cloud account, no email, no server-side recovery.</string>
+    <!-- docs/DECOY-ACCOUNT.md §5: this is now the FIRST line of the app, so it must not presume
+         the reader already has a password any more than it may presume this device holds an
+         identity. It says the same words on a phone that has never held an account, on one
+         holding two, and on one wiped ten minutes ago. -->
+    <string name="auth_signin_prompt">> enter a password to open what is on this device</string>
+    <string name="auth_field_password">password:</string>
+    <string name="auth_btn_unlock">[ UNLOCK ]</string>
+    <string name="auth_err_enter_password">enter a password</string>
+    <!-- The way out of the form, for the one launch in a thousand that is not a sign-in. Worded as
+         a question about the PERSON, never a claim about the DEVICE: it reads identically whether
+         this phone has held an identity for a year or has never held one. -->
+    <string name="auth_signin_other">> first time on this phone, or restoring one?</string>
+    <string name="auth_btn_other_options">[ OTHER OPTIONS ]</string>
+    <!-- docs/BIOMETRIC-UNLOCK.md §3: the button sits ABOVE the password field; the field and
+         [ UNLOCK ] stay visible and usable at all times, which is what keeps the duress pin reachable -->
+    <string name="auth_btn_bio_fingerprint">[ UNLOCK WITH FINGERPRINT ]</string>
+    <string name="auth_btn_bio_face">[ UNLOCK WITH FACE ]</string>
+    <string name="auth_btn_bio_generic">[ UNLOCK WITH BIOMETRICS ]</string>
+    <string name="auth_bio_not_recognised">! not recognised — try again or type your password</string>
+    <string name="auth_bio_changed">── biometrics changed: type your password once ──</string>
+    <string name="auth_bio_password_required">── password required ──</string>
+    <!-- docs/SCRUB-AND-WIPE.md §A2, verbatim and identical on iOS: shown above the password field
+         in the alert colour from the SEVENTH consecutive wrong typed password, counting 3, 2, 1.
+         One form for every count on purpose — the spec prints this sentence and both platforms
+         render the same words, so no plural rule may reshape it. -->
+    <string name="auth_wipe_warning">%1$d attempts left before this device wipes</string>
+    <string name="auth_create_prompt">> new identity — no recovery. lose the password, lose everything.</string>
+    <string name="auth_field_username">username:</string>
+    <string name="auth_field_confirm">confirm :</string>
+    <string name="auth_btn_ignite">[ IGNITE ]</string>
+    <string name="auth_create_footnote">> igniting accepts pyrochat.ca/terms + privacy</string>
+    <string name="auth_err_username">username: 3+ chars, a-z 0-9 _</string>
+    <string name="auth_err_password">password: 8+ chars</string>
+    <string name="auth_err_mismatch">passwords do not match</string>
+    <string name="auth_restore_prompt">> restore an encrypted backup made on your old device ([cfg] → EXPORT).</string>
+    <string name="auth_btn_choose_backup">[ CHOOSE BACKUP FILE ]</string>
+    <string name="auth_field_backup_passphrase">backup passphrase:</string>
+    <string name="auth_restore_then">> then choose a password for THIS device:</string>
+    <string name="auth_field_new_password">new password:</string>
+    <string name="auth_field_confirm_wide">"confirm     :"</string>
+    <string name="auth_btn_restore">[ RESTORE ]</string>
+    <string name="auth_restore_footnote">restoring MOVES the identity here. stop using the old device — one identity, one device.</string>
+    <string name="auth_err_choose_backup">choose a backup file first</string>
+    <string name="auth_err_enter_passphrase">enter the backup passphrase</string>
+    <string name="auth_err_new_password">new password: 8+ chars</string>
+    <string name="auth_err_could_not_read_file">could not read file</string>
+
+    <!-- HomeView -->
+    <string name="home_cfg">[cfg]</string>
+    <string name="home_txt">[txt]</string>
+    <string name="home_share">[share]</string>
+    <string name="home_qr">[qr]</string>
+    <string name="home_plus">[+]</string>
+    <string name="home_link_up">● LINK UP</string>
+    <string name="home_link_down">○ LINK DOWN</string>
+    <string name="home_retry">[retry]</string>
+    <string name="home_syncing">◌ SYNCING</string>
+    <!-- docs/FIRST-RUN.md §1: the three-line empty state (no contacts, no groups) — verbatim on both platforms -->
+    <string name="home_empty_1">no channels yet.</string>
+    <string name="home_empty_2">press [+] and add pyrobot for a 60-second tour,</string>
+    <string name="home_empty_3">or [share] your username to bring a friend.</string>
+    <string name="home_swipe_rm">[rm]</string>
+    <string name="home_swipe_ren">[ren]</string>
+    <string name="dlg_open_channel">OPEN CHANNEL</string>
+    <string name="dlg_open_channel_field">username</string>
+    <string name="dlg_open_channel_msg">target must be a registered pyrochat user</string>
+    <string name="btn_connect">CONNECT</string>
+    <string name="btn_abort">ABORT</string>
+    <string name="dlg_mv_name">MV NAME</string>
+    <string name="dlg_mv_name_field">name</string>
+    <string name="dlg_mv_name_msg">local display name only — routing is unaffected.</string>
+    <string name="btn_mv">MV</string>
+    <string name="dlg_rm_channel">RM CHANNEL</string>
+    <string name="dlg_rm_channel_msg">removes the contact and every local message + attachment. their copies survive. no undo.</string>
+    <string name="btn_rm_rf">RM -RF</string>
+
+    <!-- group channels (docs/GROUPS.md §7 — same words on iOS) -->
+    <string name="btn_new_group">[ NEW GROUP ]</string>
+    <string name="ng_title">── new group ──</string>
+    <string name="ng_name">name:</string>
+    <string name="ng_members">members:</string>
+    <string name="ng_policy">screenshot policy:</string>
+    <string name="ng_no_contacts">no contacts yet — open a channel first.</string>
+    <string name="btn_create">[ CREATE ]</string>
+    <string name="chat_header_group_empty">── encrypted channel #%1$s ──</string>
+    <string name="members_title">── members ──</string>
+    <string name="members_verified">verified ✓</string>
+    <string name="members_safety">[safety number]</string>
+    <string name="members_remove">[remove]</string>
+    <string name="members_creator">creator</string>
+    <string name="members_gone">gone</string>
+    <string name="btn_add_member">[ add member ]</string>
+    <string name="btn_leave_group">[ leave group ]</string>
+    <string name="btn_rename_group">[ rename ]</string>
+    <string name="btn_burn_group">[ BURN GROUP ]</string>
+    <string name="members_policy">policy</string>
+    <string name="members_burn_default">burn default</string>
+    <string name="btn_burn_confirm">BURN</string>
+    <string name="dlg_add_member">ADD MEMBER</string>
+    <string name="dlg_add_member_msg">any member may add a contact. the new member receives the full roster.</string>
+    <string name="dlg_add_member_none">every contact is already in this group.</string>
+    <string name="dlg_rename_group">RENAME</string>
+    <string name="dlg_rename_group_msg">1–32 characters, shown as #name to every member.</string>
+    <string name="dlg_leave_group">LEAVE GROUP</string>
+    <string name="dlg_leave_group_msg">the other members keep the channel. your copy turns read-only.</string>
+    <string name="btn_leave">LEAVE</string>
+    <string name="ctx_delete_for_all">delete for all</string>
+    <string name="dlg_rm_all_title">RM ON EVERY DEVICE</string>
+    <string name="dlg_rm_all_msg">retracts this message from every member\'s device. needs the link up.</string>
+    <string name="btn_delete_for_all">DELETE FOR ALL</string>
+    <string name="dlg_rm_group_msg">leaves the group and removes every local message + attachment. the other members keep theirs. no undo.</string>
+    <string name="dlg_rm_group_left_msg">removes this dead channel and every local message + attachment. no undo.</string>
+
+    <!-- operator notices — the pinned <pyrochat> channel (docs/PROTOCOL.md "Operator notices"; same words on iOS) -->
+    <string name="notices_channel">&lt;pyrochat&gt;</string>
+    <string name="notices_header">── system notices ──</string>
+    <string name="notices_footer">notices come from the relay. nobody can reply here.</string>
+    <!-- latest versions — the update row under the link line (docs/PROTOCOL.md "Latest versions"; same words on iOS): %1$s = marketing version, %2$d = build -->
+    <string name="home_update">▲ update available: %1$s (%2$d)</string>
+    <string name="home_update_tap">▲ update available: %1$s (%2$d) · tap to get it</string>
+
+    <!-- ChatView -->
+    <string name="chat_search">[/]</string>
+    <string name="chat_block">[block]</string>
+    <string name="chat_burn">[burn]</string>
+    <string name="chat_ttl">[ttl]</string>
+    <string name="chat_ttl_section">self-destruct for this chat</string>
+    <string name="ttl_global_default">global default</string>
+    <string name="ttl_off">off</string>
+    <string name="chat_header_empty">── encrypted channel with &lt;%1$s&gt; ──</string>
+    <string name="chat_header_beginning">── beginning of channel ──</string>
+    <string name="chat_typing">&lt;%1$s&gt; is typing…</string>
+    <string name="chat_voice_changing">changing voice…</string>
+    <string name="chat_failed_retry">FAILED [RETRY]</string>
+    <string name="chat_attach_img">[IMG] photos</string>
+    <string name="chat_attach_file">[FILE] browse</string>
+    <string name="chat_mic">[🎙]</string>
+    <string name="chat_tx">[TX]</string>
+    <string name="chat_rec_send">[SEND]</string>
+    <string name="chat_export_glyph">[EXPORT]</string>
+    <string name="chat_search_hint">type to grep this channel</string>
+    <string name="img_missing">[IMG missing]</string>
+    <string name="viewer_close">[CLOSE]</string>
+    <string name="viewer_export">[EXPORT]</string>
+    <string name="ctx_copy">copy</string>
+    <!-- docs/MESSAGE-DETAILS.md §1 — every message, system and burn rows and attachments included -->
+    <string name="ctx_details">details</string>
+    <string name="details_title">message details</string>
+    <!-- docs/SCRUB-AND-WIPE.md §B3, verbatim and identical on iOS: the one line under the compose
+         bar while the attachment goes out. %1$s is the list of what went ("author, gps and 1 more",
+         composed by MessageDetails.removedSummary so its grammar stays testable) and %2$s the file. -->
+    <string name="chat_scrub_removed">removed %1$s from %2$s</string>
+    <string name="ctx_delete_for_me">delete for me</string>
+    <string name="ctx_delete_for_both">delete for both</string>
+    <string name="dlg_block_title">BLOCK &lt;%1$s&gt;</string>
+    <string name="dlg_block_msg">block: silently drops everything they send. report: also flags their address to the operator — no message content is shared (none exists to share) and your identity is not attached to the report. reporting burns this thread.</string>
+    <string name="btn_block">BLOCK</string>
+    <string name="btn_report_block">REPORT + BLOCK</string>
+    <string name="dlg_rm_both_title">RM ON BOTH DEVICES</string>
+    <string name="dlg_rm_both_msg">retracts this message from &lt;%1$s&gt;\'s device too. needs the link up; nothing happens if it can\'t be delivered.</string>
+    <string name="btn_delete_for_both">DELETE FOR BOTH</string>
+    <string name="err_could_not_retract">ERR: could not retract</string>
+    <string name="dlg_rm_message">RM MESSAGE</string>
+    <string name="dlg_rm_message_msg">removes this message from THIS device only. the other side keeps their copy.</string>
+    <string name="btn_rm_f">RM -F</string>
+    <string name="dlg_burn_thread">BURN THREAD</string>
+    <string name="dlg_burn_thread_msg">wipes this conversation on BOTH devices. no undo.</string>
+    <string name="btn_burn">BURN</string>
+    <string name="dlg_export">EXPORT</string>
+    <string name="dlg_export_msg">this decrypted copy LEAVES the encrypted store. anyone with device access can read it. no burn timer applies.</string>
+    <string name="btn_export">EXPORT</string>
+
+    <!-- VerifyView -->
+    <string name="verify_title">SAFETY NUMBER</string>
+    <string name="verify_body">every pyrochat channel is end-to-end encrypted. these 60 digits are derived from your identity key and &lt;%1$s&gt;\'s — nothing else. compare them with &lt;%1$s&gt; over a channel you already trust (in person, a call). if every digit matches, no relay or middleman is between you.</string>
+    <string name="verify_qr_note">the qr encodes the machine-readable fingerprint for future scan-verify. the two devices show DIFFERENT qr codes by design — compare the digits, not the squares.</string>
+    <string name="verify_status_verified">STATUS: VERIFIED ✓</string>
+    <string name="verify_unverify">[UNVERIFY]</string>
+    <string name="verify_mark">[MARK VERIFIED]</string>
+    <string name="verify_qr_label">Safety number QR code</string>
+    <string name="verify_no_key">no identity key on record for &lt;%1$s&gt; yet. exchange one message first, then verify.</string>
+
+    <!-- SettingsView -->
+    <!-- docs/STATUS-AND-CFG.md §2 — the five sections, named after what the person is trying to
+         do rather than after the implementation. `[ what protects me ]` sits above all of them and
+         is the only way to the status screen. -->
+    <string name="cfg_what_protects_me">[ what protects me ]</string>
+    <string name="cfg_protection">PROTECTION</string>
+    <string name="cfg_leaves">WHAT LEAVES THIS PHONE</string>
+    <string name="cfg_appearance">APPEARANCE</string>
+    <string name="cfg_account">ACCOUNT</string>
+    <string name="cfg_theme">theme</string>
+    <string name="cfg_text_size">text size</string>
+    <string name="cfg_scanlines">scanlines</string>
+    <string name="cfg_sounds">tx/rx sounds</string>
+    <string name="cfg_notices">system notices</string>
+    <string name="cfg_notices_footnote">announcements from the relay: maintenance, new versions. shown as a &lt;pyrochat&gt; channel.</string>
+    <string name="cfg_default_burn">default self-destruct</string>
+    <string name="cfg_thread_auto_burn">thread auto-burn</string>
+    <string name="cfg_burn_on_screenshot">burn thread on peer screenshot</string>
+    <string name="cfg_block_screenshots">block screenshots (capture = black)</string>
+    <string name="cfg_duress_unset">set duress pin …</string>
+    <string name="cfg_duress_set">duress pin: SET</string>
+    <string name="cfg_deadman">dead-man wipe</string>
+    <string name="cfg_deadman_footnote">dead-man: if this app is not unlocked for that long, everything wipes on the next launch — same shredder as the duress pin.</string>
+    <string name="cfg_wake_push">wake push (zero-content)</string>
+    <string name="cfg_wake_push_footnote">banner + sound whenever a message waits while the app is closed. if android opened Settings instead of asking, allow notifications there (Banners, Sounds).</string>
+    <string name="cfg_read_receipts">read receipts (send + show)</string>
+    <string name="cfg_typing">typing indicators</string>
+    <string name="cfg_linked">linked: %1$s · code %2$s</string>
+    <string name="cfg_since">since %1$s</string>
+    <string name="cfg_unlink">[unlink]</string>
+    <string name="cfg_link_desktop">LINK DESKTOP …</string>
+    <string name="cfg_subscription">subscription</string>
+    <string name="cfg_days_remaining">%1$d days remaining</string>
+    <string name="cfg_no_access_key">no access key</string>
+    <string name="cfg_enter_access_key">ENTER ACCESS KEY …</string>
+    <string name="cfg_socks_proxy">socks proxy</string>
+    <!-- docs/STATUS-AND-CFG.md §2 + docs/SELF_HOSTING.md "Private-server builds": the relay and
+         billing addresses matter to a handful of users, so they sit behind one row at the bottom
+         of ACCOUNT. Both exist only in a PRIVATE_SERVER_UI build, on both platforms. -->
+    <string name="cfg_advanced">advanced …</string>
+    <string name="cfg_relay_address">relay address</string>
+    <string name="cfg_billing_address">billing address</string>
+    <!-- docs/BIOMETRIC-UNLOCK.md §2: one row, directly above auto-lock; hidden entirely when the
+         device has no biometric hardware or nothing enrolled. The footnote is verbatim on both platforms. -->
+    <string name="cfg_bio_fingerprint">unlock with fingerprint</string>
+    <string name="cfg_bio_face">unlock with face</string>
+    <string name="cfg_bio_generic">unlock with biometrics</string>
+    <string name="cfg_bio_footnote">a face or a finger can be taken from you; a password in your head cannot. the app still asks for your password every 7 days, after three failed attempts, and whenever you add or remove a face or fingerprint.</string>
+    <!-- docs/DECOY-ACCOUNT.md §3: the row reads the same whether or not a decoy exists. It never
+         says "configured", never shows a checkmark, never changes colour. A row that renders
+         differently once used is a disclosure. -->
+    <string name="cfg_decoy">set decoy password …</string>
+    <string name="cfg_decoy_footnote">use it — message someone from it now and then; an account with three messages from four months ago is not a decoy, it is a prop, and a great many files behind an account with almost no messages invites the next question.</string>
+    <!-- §1 "never trim without being asked": the condition, and nothing destructive offered. -->
+    <string name="cfg_store_too_large">this account holds more text than a second password would leave room for (%1$s of %2$s). nothing has been changed or deleted and everything works as before.</string>
+    <string name="cfg_auto_lock">auto-lock</string>
+    <string name="cfg_blocked_users">blocked users</string>
+    <string name="cfg_unblock">[unblock]</string>
+    <string name="cfg_report_abuse">report abuse</string>
+    <string name="cfg_report_abuse_value">in any chat: [block] → REPORT</string>
+    <string name="cfg_support">support</string>
+    <string name="cfg_support_value">pyrochat.ca</string>
+    <string name="cfg_licenses">licenses</string>
+    <string name="cfg_licenses_value">AGPLv3 · OFL ›</string>
+    <!-- docs/BIOMETRIC-UNLOCK.md: the system sheet. BIOMETRIC_STRONG only — the negative button is
+         the ONLY other way out, never a device PIN or pattern. -->
+    <string name="bio_prompt_title">pyrochat</string>
+    <string name="bio_prompt_unlock">unlock this device\'s store</string>
+    <string name="bio_prompt_enable">confirm to store this device\'s key</string>
+    <string name="bio_prompt_negative">use password</string>
+
+    <!-- LicensesScreen (docs/APP_STORE.md §AGPL obligations; docs/ANDROID-RELEASE.md §6) -->
+    <string name="lic_title">licenses</string>
+    <string name="lic_section_pyrochat">pyrochat</string>
+    <string name="lic_pyrochat">PyroChat for Android %1$s\nCopyright © 2026 PyroChat\nLicensed under the GNU Affero General Public License, version 3 (AGPLv3). The complete corresponding source for this exact build is available on request from legal@pyrochat.ca, free of charge.</string>
+    <string name="lic_agpl_notice">This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. It is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details: https://www.gnu.org/licenses/agpl-3.0.html</string>
+    <string name="lic_section_libsignal">libsignal</string>
+    <string name="lic_libsignal">libsignal\nCopyright 2020-2026 Signal Messenger, LLC\nLicensed under the GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html</string>
+    <string name="lic_libsignal_use">the Signal Protocol implementation (X3DH, PQXDH, Double Ratchet) that encrypts every message. PyroChat is not affiliated with or endorsed by Signal Messenger, LLC.</string>
+    <string name="lic_section_plex">ibm plex mono</string>
+    <string name="lic_plex">IBM Plex Mono\nCopyright © 2017 IBM Corp. with Reserved Font Name \"Plex\"\nLicensed under the SIL Open Font License, Version 1.1:</string>
+    <string name="lic_ack_show">[ SHOW LIBSIGNAL THIRD-PARTY NOTICES … ]</string>
+    <string name="lic_ack_hide">[ HIDE THIRD-PARTY NOTICES ]</string>
+    <string name="lic_asset_missing">(%1$s is missing from this build)</string>
+    <string name="cfg_export_backup">[ EXPORT ENCRYPTED BACKUP … ]</string>
+    <string name="cfg_backup_footnote">everything — identity, messages, files, notes — sealed with a passphrase you choose. restore it on a new phone from the sign-in screen. guard the file like the phone itself.</string>
+    <string name="cfg_danger">DANGER</string>
+    <string name="cfg_burn_everything">[ BURN EVERYTHING ]</string>
+    <string name="dlg_backup_pass">BACKUP PASSPHRASE</string>
+    <string name="dlg_backup_pass_field1">passphrase (4+ chars)</string>
+    <string name="dlg_backup_pass_field2">confirm</string>
+    <string name="dlg_backup_pass_msg">length is what protects it — four ordinary words beats a short password with symbols in it. the backup is sealed with THIS passphrase — aes-256, same strength as the app. without it the file is unreadable, including by you. it is NOT your account password (but may be the same if you insist).</string>
+    <string name="backup_status_short">✗ passphrase: 4+ chars</string>
+    <string name="backup_status_mismatch">✗ passphrases do not match</string>
+    <string name="backup_status_ready">✓ %1$s backup ready</string>
+    <string name="backup_status_ready_weak">⚠ %1$s ready — short passphrase, anyone with this file can open it</string>
+    <string name="backup_status_failed">✗ export failed</string>
+    <string name="dlg_socks">SOCKS PROXY</string>
+    <string name="dlg_relay">RELAY ADDRESS</string>
+    <string name="dlg_relay_field">wss://host/ws</string>
+    <string name="dlg_relay_msg">every message this phone sends and receives goes through this relay. changing it signs you out of the current one; an identity registered on one relay does not exist on another.</string>
+    <string name="dlg_billing">BILLING ADDRESS</string>
+    <string name="dlg_billing_field">https://host</string>
+    <string name="dlg_billing_msg">where access keys are redeemed. the relay and this server share no identifier and never speak to each other.</string>
+    <string name="dlg_socks_field">host:port (empty = direct)</string>
+    <string name="dlg_socks_msg">all relay traffic tunnels through this SOCKS5 proxy (e.g. Tor: 127.0.0.1:9050 via Orbot\'s local proxy). empty or invalid = direct connection.</string>
+    <string name="btn_set_reconnect">SET + RECONNECT</string>
+    <string name="dlg_access_key">ACCESS KEY</string>
+    <string name="dlg_access_key_field">PYRO-XXXX-XXXX-XXXX-XXXX</string>
+    <string name="dlg_access_key_msg">keys are single-use and anonymous. redeeming links nothing to you.</string>
+    <string name="btn_redeem">REDEEM</string>
+    <string name="redeem_status_busy">redeeming…</string>
+    <string name="redeem_status_ok">✓ access granted: %1$d days</string>
+    <string name="dlg_duress">DURESS PIN</string>
+    <string name="dlg_duress_field">pin</string>
+    <string name="dlg_duress_msg">entering this pin at unlock silently destroys every key and message, then shows an empty app. it looks like a wrong-password error.</string>
+    <string name="btn_arm">ARM</string>
+    <!-- docs/DECOY-ACCOUNT.md §3: a username and a password, and nothing else. No "seed it with
+         fake messages" checkbox — a fabricated history that reads like fabrication is worse than a
+         thin real one. -->
+    <string name="dlg_decoy">DECOY PASSWORD</string>
+    <!-- docs/DECOY-ACCOUNT.md §3: replacing may say so plainly ONCE THE DIALOG IS OPEN, because
+         only the account that owns the decoy can get here and anyone who compelled that account
+         has already won. The row itself stays identical everywhere. -->
+    <string name="dlg_decoy_replace_msg">this replaces the decoy this account already has. its messages and its username go with it, and the new password is the only one that will open it.</string>
+    <string name="btn_decoy_replace">REPLACE</string>
+    <string name="decoy_status_replaced">✓ decoy replaced</string>
+    <string name="dlg_decoy_msg">a second, real account with its own username, contacts and history. entering its password at unlock opens it instead of this one, and nothing in the app ever shows that it exists.\n\nit protects against someone at the scene who can make you unlock once. it does not defeat a lab that knows this feature exists.</string>
+    <string name="dlg_decoy_user">username</string>
+    <string name="dlg_decoy_pass">password</string>
+    <string name="btn_decoy_create">CREATE</string>
+    <string name="decoy_status_busy">registering…</string>
+    <string name="decoy_status_ok">✓ decoy created</string>
+    <string name="dlg_total_wipe">TOTAL WIPE</string>
+    <string name="dlg_total_wipe_msg">destroys all keys and messages on this device and deletes the account from the relay: contacts can no longer reach it and this phone stops receiving wake-ups. there is no undo.</string>
+
+    <!-- LinkDesktopView -->
+    <string name="link_title">── LINK DESKTOP ──</string>
+    <string name="link_instruction">open  pyrochat.ca/link  in a browser and scan the code it shows</string>
+    <string name="link_paste_hint">simulator: paste the pyro-link code</string>
+    <string name="link_paste_placeholder">pyro-link:v1:…</string>
+    <string name="btn_link">[ LINK ]</string>
+    <string name="link_linked">LINKED ▮</string>
+    <string name="link_to">to  %1$s</string>
+    <string name="link_code">code  %1$s</string>
+    <string name="link_sas_note">the same 6 digits must show in your browser — if they differ, someone hijacked the code: unlink immediately.</string>
+    <string name="link_burn_note">burn-after messages never appear in the browser. lock or background this phone and the link drops.</string>
+    <string name="btn_done">[ DONE ]</string>
+    <string name="btn_unlink">[ UNLINK ]</string>
+    <string name="link_denied_title">ERR: camera access denied</string>
+    <string name="link_denied_body">settings → privacy → camera → pyrochat</string>
+
+    <!-- AddByQRView -->
+    <string name="qr_title">── ADD BY QR ──</string>
+    <string name="qr_my_code">MY CODE</string>
+    <string name="qr_scan">SCAN</string>
+    <string name="qr_my_code_note">they scan this → you\'re added AND verified on their device in one step. then they show you theirs.</string>
+    <string name="qr_channel_open">CHANNEL OPEN ✓</string>
+    <!-- docs/FIRST-RUN.md §2: the paste field exists on every build, for a shared pyro-add code -->
+    <string name="qr_paste_hint">paste a pyro-add code</string>
+    <string name="qr_paste_placeholder">pyro-add:v1:…</string>
+    <string name="btn_use">[ USE ]</string>
+    <string name="btn_rescan">[ RESCAN ]</string>
+    <string name="qr_denied_title">camera access denied</string>
+    <string name="qr_denied_body">scanning needs the camera. allow it in Settings → PyroChat → Camera, then come back — or paste the code below.</string>
+    <string name="btn_open_settings">[ OPEN SETTINGS ]</string>
+    <string name="qr_my_code_label">My contact QR code</string>
+
+    <!-- NotesListView -->
+    <string name="notes_empty">no entries. [+] to open a new buffer.</string>
+
+    <!-- push (zero-content wake — the same words as the iOS INCOMING_TRANSMISSION loc-key; never a sender, never text) -->
+    <string name="push_channel_name">transmissions</string>
+    <string name="push_channel_description">zero-content wake-ups: a message is waiting. never a sender, never text.</string>
+    <string name="push_incoming_transmission">incoming transmission</string>
+    <string name="cfg_wake_push_unavailable">wake push is unavailable in this build: no firebase config was baked in (android/app/firebase.properties — see android/README.md).</string>
+    <string name="cfg_wake_push_blocked">notifications are blocked for PyroChat, so nothing will show while the app is closed. tap here to allow them in system settings.</string>
+</resources>

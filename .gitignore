@@ -1,0 +1,19 @@
+# build output and machine-specific files
+build/
+.gradle/
+local.properties
+DerivedData/
+*.xcarchive
+ios/Pods/
+ios/PyroChat.xcodeproj/
+ios/PyroChat.xcworkspace/
+node_modules/
+# never commit these
+android/app/firebase.properties
+**/google-services.json
+*.jks
+*.keystore
+*.pem
+*.p8
+bot/state.json
+.DS_Store

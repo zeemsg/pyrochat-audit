@@ -1,0 +1,137 @@
+{
+  "attachmentIds" : {
+    "imageIncoming" : "a2a2a2a2-0000-4000-8000-000000000001"
+  },
+  "counts" : {
+    "contacts" : 1,
+    "drafts" : 1,
+    "groups" : 1,
+    "messages" : 6,
+    "receiptOutbox" : {
+      "read" : 1
+    },
+    "threads" : 2
+  },
+  "files" : {
+    "attachments/a2a2a2a2-0000-4000-8000-000000000001" : {
+      "plaintextBytes" : 3200,
+      "plaintextSha256" : "67e145e02b6b77c42f57f9441209e37b85459733543b584a2ed39fd2d036073b",
+      "sealedBytes" : 3228,
+      "sealedSha256" : "7b575bce660417036d5c856e30d71907c21ba7f794d5b2d62d5fb65c982d882b"
+    },
+    "pyro.store" : {
+      "bytes" : 13766,
+      "sha256" : "f2949c57355ba58d3bf5a233130b3049e44c4092c367d3b02d8a81cc49361a94"
+    },
+    "pyro.store.plaintext.json" : {
+      "bytes" : 13738,
+      "sha256" : "73071577c6e3310b6ff75f58826cfd2f779b63450e151a01ec8d3896a8b3653f"
+    }
+  },
+  "fixedValues" : {
+    "attachmentPlaintext" : "LCG pattern as in ../ios-store, seed 0x41, 3200 B",
+    "dateBase" : 780000000,
+    "dateEncoding" : "seconds since 2001-01-01T00:00:00Z as a JSON number",
+    "messageIdPattern" : "6e000000-0000-4000-8000-%012d (n = 1…6)"
+  },
+  "generatedAt" : "2026-09-18T15:29:36Z",
+  "generatedBy" : "ios/Tests/FixtureExportTests.swift testExportIOSGroupFixtures (real SecureStore API)",
+  "group" : {
+    "burnSeconds" : 300,
+    "colourRule" : "joinIndex = position in (members + former) ordered by (joinedAt, hash), earliest join per hash; palette[joinIndex % 10], 70% for joinIndex/10 == 1, 50% for >= 2",
+    "colours" : {
+      "342e14bd406c0a3e585d28f1e769f14453c60467197b3ae863bee40196e5eda9" : {
+        "hex" : "#c792ff",
+        "joinIndex" : 2
+      },
+      "550618ddfd3fb280f5c4c62d1d903e76166318d1f11ac467fada75f34395c563" : {
+        "hex" : "#4fd8ff",
+        "joinIndex" : 1
+      },
+      "1055062b6067d227d29a120f8646eb87bf439c58b29715a26cdc11a2e314b1ef" : {
+        "hex" : "#3ef573",
+        "joinIndex" : 0
+      },
+      "f6bdb94c9073f72a4fba85f758b8fd332a2f6b8a8cdd3fdf348aa82ca5886407" : {
+        "hex" : "#ffd166",
+        "joinIndex" : 3
+      }
+    },
+    "creator" : "1055062b6067d227d29a120f8646eb87bf439c58b29715a26cdc11a2e314b1ef",
+    "epoch" : 4,
+    "former" : 1,
+    "id" : "9d000000-0000-4000-8000-000000000001",
+    "iosOnlyOptionalKeys" : [
+      "former (members who left/were removed, keeps colour indices)",
+      "members[].gone (relay said unknown_user)"
+    ],
+    "keys" : [
+      "id",
+      "name",
+      "creator",
+      "createdAt",
+      "epoch",
+      "policy",
+      "burnSeconds",
+      "members",
+      "left",
+      "former"
+    ],
+    "members" : 3,
+    "name" : "ops",
+    "policy" : "burn_remove"
+  },
+  "hashes" : {
+    "alice_fixture" : "1055062b6067d227d29a120f8646eb87bf439c58b29715a26cdc11a2e314b1ef",
+    "bob_fixture" : "550618ddfd3fb280f5c4c62d1d903e76166318d1f11ac467fada75f34395c563",
+    "carol_fixture" : "f6bdb94c9073f72a4fba85f758b8fd332a2f6b8a8cdd3fdf348aa82ca5886407",
+    "dave_fixture" : "342e14bd406c0a3e585d28f1e769f14453c60467197b3ae863bee40196e5eda9"
+  },
+  "identity" : {
+    "usernameDisplay" : "alice_fixture",
+    "usernameHash" : "1055062b6067d227d29a120f8646eb87bf439c58b29715a26cdc11a2e314b1ef"
+  },
+  "randomPerRun" : [
+    "identity keys, prekeys, registrationId",
+    "AES-GCM nonces",
+    "JSON key order"
+  ],
+  "spec" : "docs/GROUPS.md §3 — Blob.groups + ChatMessage.group/sender/receipts; same KDF/AEAD as ../ios-store",
+  "store" : {
+    "aad" : "none",
+    "aead" : "AES-256-GCM",
+    "file" : "pyro.store",
+    "iterations" : 600000,
+    "kdf" : "PBKDF2-HMAC-SHA256",
+    "kdfSaltHex" : "00112233445566778899aabbccddeeff102132435465768798a9bacbdcedfe0f",
+    "keyBytes" : 32,
+    "layout" : "nonce(12) || ciphertext || tag(16)",
+    "nonceBytes" : 12,
+    "password" : "correct horse battery staple",
+    "plaintext" : "pyro.store.plaintext.json",
+    "tagBytes" : 16
+  },
+  "thread" : {
+    "byKind" : {
+      "image" : 1,
+      "system" : 1,
+      "text" : 4
+    },
+    "expectedStatusWords" : {
+      "6e000000-0000-4000-8000-000000000003" : "READ 2/2",
+      "6e000000-0000-4000-8000-000000000005" : "DELIVERED 1/2"
+    },
+    "key" : "9d000000-0000-4000-8000-000000000001",
+    "outgoingRowIds" : [
+      "6e000000-0000-4000-8000-000000000003",
+      "6e000000-0000-4000-8000-000000000005"
+    ],
+    "rowKeys" : [
+      "group (= thread key)",
+      "sender (incoming only)",
+      "receipts (outgoing only: {hash: delivered|read})"
+    ],
+    "rows" : 6,
+    "systemRow" : "── <carol_fixture> joined ──"
+  }
+}

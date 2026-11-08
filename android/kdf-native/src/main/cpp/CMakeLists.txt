@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.22.1)
+project(pyrokdf C)
+add_library(pyrokdf SHARED pbkdf2.c)
+target_compile_options(pyrokdf PRIVATE -O3 -fvisibility=hidden -Wall)
+target_link_libraries(pyrokdf log)

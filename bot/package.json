@@ -1,0 +1,16 @@
+{
+  "name": "pyrochat-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "pyrobot — PyroChat's automated demo peer (real libsignal client)",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs",
+    "test": "node --test test/sealed.test.mjs && node test/e2e.mjs"
+  },
+  "dependencies": {
+    "@signalapp/libsignal-client": "0.102.3",
+    "ws": "^8.18.0"
+  }
+}

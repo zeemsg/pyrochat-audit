@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- releaseCheck overlay (app/build.gradle.kts): the shrunk release build, tried against a relay on
+     the developer's machine before an upload. Like the debug overlay it may speak plain ws:// to
+     this machine and to nothing else; the release build keeps the platform default (TLS only). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:networkSecurityConfig="@xml/network_security_config" />
+</manifest>

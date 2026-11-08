@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FileProvider scope for FileAccess: only the cache dir, where export-*/preview-* staging lives -->
+<paths>
+    <cache-path name="tmp" path="." />
+</paths>

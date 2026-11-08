@@ -1,0 +1,11 @@
+{
+  "source": "440 Hz at -6 dBFS (0.5 amplitude), silent 0.4-0.6 s, 1 s",
+  "encoder": "AVAudioFile(forWriting:settings:) with VoiceRecorder.swift:31-36 settings (CoreAudio AAC-LC 24 kHz mono 32 kbps)",
+  "decoder": "AVAudioFile (CoreAudio), iOS simulator Version 26.2 (Build 23C54)",
+  "sha256": "fd771a132e45392a10faecd226cddc1ed765580e5f076642cc81dee06c2a188f",
+  "sampleRate": 24000,
+  "frames": 24000,
+  "coreAudioPacketTable": {"validFrames": 24000, "priming": 2112, "remainder": 512},
+  "barCount": 32,
+  "bars": [0.97927094, 0.980139, 0.9811264, 0.99205357, 0.9931879, 0.97426605, 0.96366084, 0.99271333, 0.9681865, 1.0, 0.9872316, 0.97425765, 0.9120892, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.8856688, 0.99060816, 0.99053246, 0.98973197, 0.99687564, 0.98918575, 0.9706384, 0.98169935, 0.9896899, 0.9857658, 0.999319, 0.98009634, 0.97967255]
+}

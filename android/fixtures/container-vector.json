@@ -1,0 +1,67 @@
+{
+  "spec": "docs/DECOY-ACCOUNT.md §1, §7 — PYROVLT1 container, one 2 MiB half sealed",
+  "description": "Cross-platform container test vector. Both platforms build a container from these inputs and must produce container.sha256 exactly. No container file is checked in: one is 12,582,925 bytes of mostly incompressible padding, and four of them across two platforms is fifty megabytes of test data that compresses to nothing.",
+  "owners": [
+    "ios/Tests/ContainerVectorTests.swift",
+    "android (matching test)"
+  ],
+  "byteSource": {
+    "note": "A platform RNG cannot be the source: SecRandomCopyBytes and java.util.Random are different streams. This counter construction is the same three lines in either language.",
+    "construction": "stream(seed, n): out = \"\", ctr = 0; while len(out) < n: out += SHA-256(seed(32 bytes) || ctr(4 bytes, big-endian)); ctr += 1; return out[:n]",
+    "continuity": "ONE stream per container. The counter runs on across every request and does NOT restart per call; a request that is not a multiple of 32 keeps the remainder for the next request.",
+    "drawOrder": [
+      "1. padding of the sealed half: halfCapacity - seqBytes - lengthBytes - payload.bytes = 2096955",
+      "2. nonce of the sealed half: 12 bytes",
+      "3. every remaining half, in increasing FILE OFFSET, 2097152 bytes each (5 halves here)"
+    ],
+    "seedPhrase": "pyrochat-decoy-fixture-v1",
+    "seedHex": "60123166e35f21c80ff129bba695c50a7f0f6c0dc533dc424f52a89fb46624d4",
+    "seedNote": "seed = SHA-256(UTF-8 bytes of seedPhrase)"
+  },
+  "kdf": {
+    "algorithm": "PBKDF2-HMAC-SHA256",
+    "iterations": 600000,
+    "keyBytes": 32,
+    "password": "correct horse battery staple",
+    "saltHex": "00112233445566778899aabbccddeeff102132435465768798a9bacbdcedfe0f",
+    "keySha256": "0b88c917940608474200c92e34f6a88aff53f83080868ec239b369ffde338b42"
+  },
+  "payload": {
+    "note": "Sealed VERBATIM, as these exact UTF-8 bytes. Never re-encode it through a JSON encoder: neither platform fixes dictionary key order, which is why §7 says byte-identity is unreachable for ordinary saves. It is a valid Blob, so the vector also proves the container holds something the app can read.",
+    "json": "{\"usernameDisplay\":\"fixture_vector\",\"usernameHash\":\"554182ee8e2a0409bc566851aaf13419f1b31184effe15c1dc034bfdedd12fff\",\"registrationId\":4242,\"nextPreKeyId\":7}",
+    "bytes": 157,
+    "sha256": "3b3b8742384e5f8b374195fcef2139697ef66299cea7938a246ff05191ed5a9b"
+  },
+  "layout": {
+    "magic": "PYROVLT1",
+    "slotCount": 3,
+    "slotBytes": 4194304,
+    "halfBytes": 2097152,
+    "headerBytes": 13,
+    "nonceBytes": 12,
+    "tagBytes": 16,
+    "halfCapacity": 2097124,
+    "seqBytes": 8,
+    "lengthBytes": 4,
+    "maxPayloadBytes": 2097112,
+    "halfPlaintext": "seq(8, big-endian) || length(4, big-endian) || JSON(Blob) || random padding",
+    "halfOffsets": [
+      13,
+      2097165,
+      4194317,
+      6291469,
+      8388621,
+      10485773
+    ]
+  },
+  "container": {
+    "occupiedSlot": 2,
+    "half": 0,
+    "seq": 1,
+    "otherHalvesAreNoise": true,
+    "headerHex": "5059524f564c54310300400000",
+    "bytes": 12582925,
+    "sha256": "3a5ebe3dd0b39b00208ad8233ab72cfe815c988899e29ed0f1404487a7ddd0a1",
+    "sealedHalfSha256": "db20f01fe53b16b2855855155f5a3a49990c8a080ad1d92d0e26e27962da3f5d"
+  }
+}

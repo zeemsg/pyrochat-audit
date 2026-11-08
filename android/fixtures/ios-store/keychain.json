@@ -1,0 +1,21 @@
+{
+  "accessible" : "kSecAttrAccessibleWhenUnlockedThisDeviceOnly",
+  "class" : "kSecClassGenericPassword",
+  "items" : {
+    "duress-verifier" : {
+      "base64" : "06hOA4Xh+B4rIFuB27oomo2QqKJSZmpxIDWugOQ3fTQ=",
+      "bytes" : 32,
+      "hex" : "d3a84e0385e1f81e2b205b81dbba289a8d90a8a252666a712035ae80e4377d34",
+      "meaning" : "PBKDF2-HMAC-SHA256(pin UTF-8, kdf-salt, 600000, 32) — SecureStore.setDuressPin; matchesDuressPin(candidate) = (PBKDF2(candidate, kdf-salt) == stored) checked BEFORE unlock; a match calls SecureStore.obliterate()",
+      "pin" : "2580"
+    },
+    "kdf-salt" : {
+      "base64" : "ABEiM0RVZneImaq7zN3u/xAhMkNUZXaHmKm6y9zt/g8=",
+      "bytes" : 32,
+      "hex" : "00112233445566778899aabbccddeeff102132435465768798a9bacbdcedfe0f",
+      "meaning" : "PBKDF2 salt (the 'pepper'): random 32 B generated once per install, never stored in pyro.store. storeKey = PBKDF2-HMAC-SHA256(password UTF-8, kdf-salt, 600000, 32)"
+    }
+  },
+  "service" : "ca.pyrochat.app",
+  "source" : "ios/PyroChat/Core/KeychainHelper.swift, ios/PyroChat/Core/SecureStore.swift (salt(), setDuressPin, matchesDuressPin)"
+}

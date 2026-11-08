@@ -1,0 +1,134 @@
+name: PyroChat
+options:
+  bundleIdPrefix: ca.pyrochat
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+packages:
+  swift-crypto:
+    url: https://github.com/apple/swift-crypto.git
+    from: 4.5.2
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "41"
+    GENERATE_INFOPLIST_FILE: NO
+    # LibSignalClient does not support explicit modules (see its podspec)
+    SWIFT_ENABLE_EXPLICIT_MODULES: NO
+targets:
+  PyroChat:
+    type: application
+    platform: iOS
+    sources:
+      - PyroChat
+    dependencies:
+      - package: swift-crypto
+        product: _CryptoExtras
+    info:
+      path: PyroChat/Info.plist
+      properties:
+        CFBundleDisplayName: PyroChat
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen:
+          UIColorName: TerminalBackground
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIUserInterfaceStyle: Dark
+        # a wake push briefly wakes the app in the background: it drains its queue and
+        # sends DELIVERED receipts without the user opening it (content-available)
+        UIBackgroundModes:
+          - remote-notification
+        NSMicrophoneUsageDescription: "PyroChat needs the microphone to record encrypted voice notes."
+        NSCameraUsageDescription: "PyroChat uses the camera only to scan PyroChat QR codes: a contact’s add code or the desktop-link code shown in your browser."
+        # REQUIRED, not optional: iOS terminates the process the moment a Face ID
+        # policy is evaluated without this key. canEvaluatePolicy does NOT need it
+        # and Touch ID does NOT need it, so its absence is invisible until someone
+        # turns the toggle on for real on Face ID hardware. See BIOMETRIC-UNLOCK.md.
+        NSFaceIDUsageDescription: "PyroChat can unlock with Face ID instead of your password. Your password is never stored; Face ID only unwraps a copy of the key held by this device’s secure hardware."
+        NSAppTransportSecurity:
+          # Production talks TLS only (wss://relay.pyrochat.ca via Cloudflare).
+          # LocalNetworking keeps plain ws://127.0.0.1 working for the dev
+          # harness + simulator without any global cleartext exception.
+          NSAllowsLocalNetworking: true
+    entitlements:
+      path: PyroChat/PyroChat.entitlements
+      properties:
+        # push-to-wake: without this iOS never issues a device token.
+        # "development" here; Xcode switches it to "production" for
+        # TestFlight/App Store exports automatically.
+        aps-environment: development
+    settings:
+      # ACCESS_KEY_UI: everything about access keys: the [cfg] ACCOUNT rows, the
+      # status screen's "access key" row, the dialog, the redeem call and the
+      # pyrochat://redeem link. The app is free and the production relay enforces
+      # no token, so none of it does anything for a user, and App Review's
+      # guideline 2.5.19 bans dormant features. Debug keeps it (tests, and the
+      # later feature it is kept for); a Release binary carries none of it.
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) DEBUG ACCESS_KEY_UI"
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pyrochat.app   # matches the existing App Store Connect record
+        # your Apple Developer team id (Xcode → Settings → Accounts)
+        DEVELOPMENT_TEAM: YOUR_TEAM_ID
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+    postBuildScripts:
+      # docs/FIRST-RUN.md §3: `pyrochat://redeem/<CODE>` opens the ACCESS KEY
+      # dialog (RootView.onOpenURL). Debug only, like ACCESS_KEY_UI: xcodegen
+      # cannot vary the Info.plist by configuration, so it is added here.
+      - name: Register the redeem URL scheme (Debug only)
+        basedOnDependencyAnalysis: false
+        # declared so the build runs this after it has written the Info.plist
+        inputFiles:
+          - $(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)
+        script: |
+          [ "$CONFIGURATION" = "Debug" ] || exit 0
+          PLIST="$TARGET_BUILD_DIR/$INFOPLIST_PATH"
+          /usr/libexec/PlistBuddy -c "Delete :CFBundleURLTypes" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy \
+            -c "Add :CFBundleURLTypes array" \
+            -c "Add :CFBundleURLTypes:0 dict" \
+            -c "Add :CFBundleURLTypes:0:CFBundleURLName string com.pyrochat.app" \
+            -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes array" \
+            -c "Add :CFBundleURLTypes:0:CFBundleURLSchemes:0 string pyrochat" \
+            "$PLIST"
+    scheme:
+      testTargets:
+        - PyroChatTests
+        - PyroChatUITests
+  PyroChatUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - UITests
+    dependencies:
+      - target: PyroChat
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pyrochat.app.uitests
+        GENERATE_INFOPLIST_FILE: YES
+  PyroChatTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: PyroChat
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pyrochat.app.tests
+        GENERATE_INFOPLIST_FILE: YES
+        # Instantiated by XCTest before the first test, which is how
+        # Tests/TempDirJanitor.swift gets to register itself as an observer.
+        # Without it the suite leaks a ~12 MB decoy container per store it
+        # opens into the app container's tmp/ and nothing ever reaps it: that
+        # reached 98 GB and filled this Mac's disk, which surfaced as codesign
+        # failing with "internal error in Code Signing subsystem".
+        INFOPLIST_KEY_NSPrincipalClass: TempDirJanitor
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/PyroChat.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PyroChat"
+        BUNDLE_LOADER: "$(TEST_HOST)"

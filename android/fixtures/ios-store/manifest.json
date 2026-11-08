@@ -1,0 +1,166 @@
+{
+  "attachmentIds" : {
+    "fileIncoming" : "a1a1a1a1-0000-4000-8000-000000000004",
+    "fileOutgoing" : "a1a1a1a1-0000-4000-8000-000000000003",
+    "imageIncoming" : "a1a1a1a1-0000-4000-8000-000000000002",
+    "imageOutgoing" : "a1a1a1a1-0000-4000-8000-000000000001"
+  },
+  "backup" : {
+    "exportedAt" : 811333597.87730002,
+    "file" : "backup.pyrobak",
+    "iterations" : 600000,
+    "kdf" : "PBKDF2-HMAC-SHA256",
+    "keyBytes" : 32,
+    "layout" : "magic(8) || salt(32) || nonce(12) || ciphertext || tag(16)",
+    "magic" : "PYROBAK1",
+    "passphrase" : "backup-pass-1234",
+    "payload" : "JSON {blob: <same Blob as the store>, attachments: {id: base64 plaintext}, exportedAt: Date}",
+    "plaintext" : "backup.plaintext.json",
+    "saltHex" : "8dbb2cee2ef720db14a4e694a1d80b8ec3541c3c962db59002f5ca015b745115"
+  },
+  "counts" : {
+    "accessTokens" : 2,
+    "attachments" : 4,
+    "blockedHashes" : 1,
+    "contacts" : 4,
+    "contactsVerified" : 1,
+    "drafts" : 2,
+    "emptyThreads" : 1,
+    "knownIdentities" : 1,
+    "kyberPreKeys" : 1,
+    "messages" : 27,
+    "messagesByDirection" : {
+      "incoming" : 16,
+      "outgoing" : 11
+    },
+    "messagesByKind" : {
+      "file" : 2,
+      "image" : 2,
+      "system" : 7,
+      "text" : 14,
+      "voice" : 2
+    },
+    "messagesByStatus" : {
+      "delivered" : 18,
+      "failed" : 1,
+      "pending" : 1,
+      "read" : 5,
+      "sent" : 2
+    },
+    "messagesViaWeb" : 2,
+    "messagesWithAttachment" : 4,
+    "messagesWithBurnAfter" : 5,
+    "messagesWithBurnStartedAt" : 3,
+    "messagesWithVoiceData" : 2,
+    "nextPreKeyId" : 33,
+    "notes" : 3,
+    "notesPinned" : 1,
+    "preKeys" : 32,
+    "receiptOutbox" : {
+      "burnStart" : 1,
+      "delivered" : 1,
+      "read" : 2
+    },
+    "sessions" : 1,
+    "signedPreKeys" : 1,
+    "threads" : 5
+  },
+  "files" : {
+    "attachments/a1a1a1a1-0000-4000-8000-000000000001" : {
+      "plaintextBytes" : 4096,
+      "plaintextSha256" : "efb9681e5799f02b32768e17f90a7e701fcf98be6d9a5bcc6ff9e61d20e228b4",
+      "sealedBytes" : 4124,
+      "sealedSha256" : "1c69f043477082344108db3e42d1169ac948aa2e7f73f7c8b6f71ad1ddeaaa4c"
+    },
+    "attachments/a1a1a1a1-0000-4000-8000-000000000002" : {
+      "plaintextBytes" : 3000,
+      "plaintextSha256" : "4c92e49e6d780d53cd24f51b4901eb5a43d5611dc5ff3e51124de00d38937d43",
+      "sealedBytes" : 3028,
+      "sealedSha256" : "745c07934e5e384449a3de9b35e9b6e63bbac8df2fbd45f6d5422d6d03a3f613"
+    },
+    "attachments/a1a1a1a1-0000-4000-8000-000000000003" : {
+      "plaintextBytes" : 2500,
+      "plaintextSha256" : "0898502c50f565e4fcf00e448ffe64c5ad5e2e75a4c18a7353b75b150a699f5c",
+      "sealedBytes" : 2528,
+      "sealedSha256" : "5fbb7df7272778312644e18fdf612b306513b28dd8683f35a8bf92f0d9bddeab"
+    },
+    "attachments/a1a1a1a1-0000-4000-8000-000000000004" : {
+      "plaintextBytes" : 700,
+      "plaintextSha256" : "1910f54fdce6725f3fb9858fae774ffdc8369a650c5652173e27b775d02ed282",
+      "sealedBytes" : 728,
+      "sealedSha256" : "e5805ec821d0139abebe867eba0e2c49d77d2feb87a1dda252461a953345b116"
+    },
+    "backup.plaintext.json" : {
+      "bytes" : 44252,
+      "sha256" : "832b1e08adfbbbac75b5bf89fdeadc54cb3bf5e756b7376bb4b7410599c5cd34"
+    },
+    "backup.pyrobak" : {
+      "bytes" : 44320,
+      "sha256" : "3e7eae672eab4f2f0e9942936f6ad0e97454ad040ff9e4a9908a03ef1cd54ab6"
+    },
+    "pyro.store" : {
+      "bytes" : 30112,
+      "sha256" : "b59e2c951289a9e973d457024ed70fb4a052c6a0ef35d4f591ced228ec658aea"
+    },
+    "pyro.store.plaintext.json" : {
+      "bytes" : 30084,
+      "sha256" : "173d9e0ed7c456fb2b1425d52adc94ce49b2399041dc402b879d70dfb866ed7d"
+    }
+  },
+  "fixedValues" : {
+    "attachmentPlaintext" : "LCG pattern: x = x*1664525 + 1013904223 (mod 2^32), byte = x >> 24, x0 = seed | 0x9E370000; seeds 0x11,0x12,0x13,0x14; voiceData seeds 0x21 (1536 B), 0x22 (2048 B)",
+    "dateBase" : 780000000,
+    "dateEncoding" : "seconds since 2001-01-01T00:00:00Z as a JSON number (Swift Date default)",
+    "messageIdPattern" : "6d000000-0000-4000-8000-%012d (n = 1…27)"
+  },
+  "generatedAt" : "2026-09-17T10:26:38Z",
+  "generatedBy" : "ios/Tests/FixtureExportTests.swift (real SecureStore / CryptoEngine / BackupService APIs)",
+  "hashes" : {
+    "alice_fixture" : "1055062b6067d227d29a120f8646eb87bf439c58b29715a26cdc11a2e314b1ef",
+    "bob_fixture" : "550618ddfd3fb280f5c4c62d1d903e76166318d1f11ac467fada75f34395c563",
+    "carol_fixture" : "f6bdb94c9073f72a4fba85f758b8fd332a2f6b8a8cdd3fdf348aa82ca5886407",
+    "dave_fixture" : "342e14bd406c0a3e585d28f1e769f14453c60467197b3ae863bee40196e5eda9",
+    "ghost_fixture" : "5531d75b2d43d37474959054218f4a89e24b137d68722e02078777d62bd9ecb1",
+    "stranger_fixture" : "c11801ffc17e647ace9ca3f31949c81261b41230ba87e7341971b9039e64cbc6"
+  },
+  "identity" : {
+    "authPrivateKeyBytes" : 32,
+    "authPublicKeyB64" : "gJ2yVcKPyF19RonsxFDYNmo8p/ullmI8B1HHCz8yROg=",
+    "identityKeyPairBytes" : 69,
+    "identityPublicKeyB64" : "BVSdCuf9ym9huFeJzYvZqKSsWf9Xdk2YyT4inEStWDsK",
+    "registrationId" : 7904,
+    "usernameDisplay" : "alice_fixture",
+    "usernameHash" : "1055062b6067d227d29a120f8646eb87bf439c58b29715a26cdc11a2e314b1ef"
+  },
+  "peer" : {
+    "identityKeyB64" : "BdlXmOzZrm316uAc6BYwdNXSvJ/F5uKqW3ilJcMzRKwM",
+    "identityKeyBytes" : 33,
+    "registrationId" : 8100,
+    "sessionRecordBytes" : 4296,
+    "usernameDisplay" : "bob_fixture",
+    "usernameHash" : "550618ddfd3fb280f5c4c62d1d903e76166318d1f11ac467fada75f34395c563"
+  },
+  "randomPerRun" : [
+    "identityKeyPair, registrationId, authPrivateKey (libsignal / CryptoKit generation)",
+    "preKeys, signedPreKeys, kyberPreKeys, sessions, knownIdentities (libsignal records)",
+    "AES-GCM nonces of pyro.store, every attachments/* file and backup.pyrobak",
+    "backup salt (bytes 8..40 of backup.pyrobak) and backup exportedAt",
+    "JSON object key order (Swift Dictionary / JSONEncoder — not sorted)",
+    "order of the flat [UInt32: Data] arrays (preKeys, signedPreKeys, kyberPreKeys)"
+  ],
+  "store" : {
+    "aad" : "none",
+    "aead" : "AES-256-GCM",
+    "file" : "pyro.store",
+    "iterations" : 600000,
+    "kdf" : "PBKDF2-HMAC-SHA256",
+    "kdfSaltHex" : "00112233445566778899aabbccddeeff102132435465768798a9bacbdcedfe0f",
+    "keyBytes" : 32,
+    "layout" : "nonce(12) || ciphertext || tag(16)  (CryptoKit AES.GCM.SealedBox.combined)",
+    "nonceBytes" : 12,
+    "password" : "correct horse battery staple",
+    "plaintext" : "pyro.store.plaintext.json (exact decrypted bytes; Swift JSONEncoder, no sortedKeys/prettyPrinted)",
+    "reencodeByteIdentical" : false,
+    "tagBytes" : 16
+  }
+}

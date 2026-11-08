@@ -1,0 +1,10 @@
+.gradle/
+build/
+*/build/
+local.properties
+.idea/
+*.iml
+.kotlin/
+.cxx/
+# Firebase values for push (optional; baked into BuildConfig by app/build.gradle.kts — see README)
+app/firebase.properties

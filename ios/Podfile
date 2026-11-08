@@ -1,0 +1,28 @@
+# PyroChat — LibSignalClient consumes Signal's prebuilt FFI binary; the
+# checksum pins the exact artifact for v0.102.2.
+ENV['LIBSIGNAL_FFI_PREBUILD_CHECKSUM'] ||= '864c8b27e220635231754719a6891e6548d11f40fe1a6d696225d08f5bd2384e'
+
+platform :ios, '17.0'
+install! 'cocoapods', warn_for_unused_master_specs_repo: false
+
+target 'PyroChat' do
+  use_frameworks!
+  pod 'LibSignalClient', git: 'https://github.com/signalapp/libsignal.git', tag: 'v0.102.2'
+
+  target 'PyroChatTests' do
+    inherit! :search_paths
+  end
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |t|
+    t.build_configurations.each do |c|
+      c.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'
+      c.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
+      if t.name == 'LibSignalClient'
+        # the prebuilt Rust FFI archive bundles C++ (BoringSSL); link libc++
+        c.build_settings['OTHER_LDFLAGS'] = ['$(inherited)', '-lc++']
+      end
+    end
+  end
+end

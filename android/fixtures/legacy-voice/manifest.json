@@ -1,0 +1,52 @@
+{
+    "what": "A pre-container `pyro.store` whose voice notes are INLINE in the blob (docs/DECOY-ACCOUNT.md §1a). Migrating it must move both notes into `attachments/` sidecars BEFORE the container is written — the blob is larger than a container half, so a container-first implementation cannot produce or migrate this file at all.",
+    "generatedBy": "android/core-store/src/test/kotlin/com/pyrochat/store/LegacyVoiceFixtureTest.kt (deterministic: LCG audio, pinned nonce — rerunning rebuilds identical bytes)",
+    "store": {
+        "file": "pyro.store",
+        "format": "PRE-CONTAINER: nonce(12) || AES-256-GCM(JSON(Blob)) || tag(16), no PYROVLT1 magic",
+        "aead": "AES-256-GCM",
+        "aad": "none",
+        "kdf": "PBKDF2-HMAC-SHA256",
+        "iterations": 600000,
+        "keyBytes": 32,
+        "password": "correct horse battery staple",
+        "kdfSaltHex": "00112233445566778899aabbccddeeff102132435465768798a9bacbdcedfe0f",
+        "nonceHex": "b0dd1d24c9e7ad6b6766a456",
+        "nonceNote": "SHA-256(\"pyrochat-legacy-voice-v1\")[0..12) — pinned so the fixture never drifts",
+        "sealedBytes": 2937292,
+        "sealedSha256": "feecb83857a6ec866da07d800d29410a4c0122fe8cf97510ba182c4a8962e9f3",
+        "plaintextBytes": 2937264,
+        "plaintextSha256": "e7dd7e5a11de4e4a41a6998074e7ee6de5a74adbb3322d723d1218e36d697694",
+        "maxPayloadBytes": 2097112,
+        "exceedsHalfBy": 840152
+    },
+    "blob": {
+        "usernameDisplay": "voice_legacy",
+        "threadHash": "b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7b7",
+        "messages": 3,
+        "textRowId": "7d000000-0000-4000-8000-000000000003",
+        "referenceBase": 7.8E8,
+        "timestampNote": "Swift Date(timeIntervalSinceReferenceDate: 780000000 + offset); rows at +2001, +2002, +2003"
+    },
+    "voiceNotes": {
+        "7d000000-0000-4000-8000-000000000001": {
+            "attachmentId": null,
+            "direction": "outgoing",
+            "durationSeconds": 1.5,
+            "plaintextBytes": 2048,
+            "sha256": "27d53f8f7a4ce9fa7025c3d48ba69f668edcf1b2ab12bec328f912a942882290",
+            "voiceDataIsInline": true
+        },
+        "7d000000-0000-4000-8000-000000000002": {
+            "attachmentId": null,
+            "direction": "incoming",
+            "durationSeconds": 110.25,
+            "plaintextBytes": 2200000,
+            "sha256": "e42407afafd20bf7bf02333060bc1e3616b72fc8cb8b20bc9f0656deb964e396",
+            "voiceDataIsInline": true
+        }
+    },
+    "audioPattern": "LCG: x = x*1664525 + 1013904223 (mod 2^32), byte = x >> 24, x0 = seed | 0x9E370000; seeds 0x31 (2048 B) and 0x32 (2200000 B)",
+    "afterMigration": "both rows keep their id, text, direction, status and voiceDuration, lose `voiceData`, and gain an `attachmentId` naming a sidecar whose PLAINTEXT sha256 is the one above",
+    "verify": "cd android && source ./env.sh && ./gradlew :core-store:test --tests '*LegacyVoiceFixtureTest*'"
+}

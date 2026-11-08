@@ -1,0 +1,2 @@
+/* zero-content wake push: the relay sends only this key, never content */
+"INCOMING_TRANSMISSION" = "incoming transmission";

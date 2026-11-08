@@ -1,0 +1,12 @@
+{
+  "body" : "eyJ2IjoxLCJkYXRhIjoiUkFvaEJmODE1cVNWT0xLOVlrRmQzZ1hIOTRMUVwvRW04SGlBU1RFeUxhR0grYjhaOUVBRVlBQ0p3clVycFUrTEJHVEtlN1p5dWROTXl4RjRZVTRZREYxeVpQYjE4UXJjUXg2RGw1NkhWVXg1M3dFOERFUnBSSHozTlBlbnRvT1RvZkFldGFjcUN6dWdaY2c5MHBWREFZdXgzQ0VhVGRQQmVxOVJcL25UZndVcHpDckN1TWhCeVpkUjhTZHZZek1VUm9uR1l2ZldWK2hNa1lsU29FQVFFQ0FJZ2RobUwwdXFtNCIsInR5cGUiOjJ9",
+  "description" : "Relay `recv.body` encrypted by bob_fixture AFTER pyro.store was written. Unlock pyro.store as alice, load sessions[from] into libsignal, decrypt: envelope = base64(JSON{v:1,type,data:b64}); type 2 = SignalMessage (Double Ratchet), 3 = PreKeySignalMessage. Inner plaintext is JSON of Wire.Payload.",
+  "envelopeType" : 2,
+  "expectedPayload" : {
+    "burnAfter" : 60,
+    "kind" : "text",
+    "senderName" : "bob_fixture",
+    "text" : "probe: decrypt me with the fixture session"
+  },
+  "from" : "550618ddfd3fb280f5c4c62d1d903e76166318d1f11ac467fada75f34395c563"
+}

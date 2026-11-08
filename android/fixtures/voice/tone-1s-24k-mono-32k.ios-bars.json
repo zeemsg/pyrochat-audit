@@ -1,0 +1,11 @@
+{
+  "source": "AacFixture.tone: 440 Hz, 0.8 amplitude for 0.5 s then 0.2, 1 s",
+  "encoder": "Android MediaCodec AAC-LC + MediaMuxer, 24 kHz mono 32 kbps (AacFixture.kt)",
+  "decoder": "AVAudioFile (CoreAudio), iOS simulator Version 26.2 (Build 23C54)",
+  "sha256": "40e97fb72e2797a6b2468cbb26c49ee216cc2b5a66ed928891bdf16e42fd10a8",
+  "sampleRate": 24000,
+  "frames": 24512,
+  "coreAudioPacketTable": {"validFrames": 24512, "priming": 2112, "remainder": 0},
+  "barCount": 32,
+  "bars": [0.99915737, 0.9794328, 0.98517823, 0.9854379, 0.98436177, 0.9830617, 0.9830452, 0.98179466, 0.98349303, 0.9836967, 0.98358315, 0.98637944, 0.98677504, 0.99639136, 1.0, 0.7393871, 0.23920849, 0.24663344, 0.24562992, 0.24606042, 0.24668433, 0.24723375, 0.24631223, 0.24547033, 0.24546628, 0.24636626, 0.24680212, 0.24586889, 0.24574439, 0.24566694, 0.23801813, 0.12]
+}
